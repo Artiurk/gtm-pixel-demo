@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GTM Pixel Demo</title>
+
+  <!-- GTM -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view",
+      page_language: "en",
+      user_type: "prospect"
+    });
+  </script>
+
+  <!-- Replace with your GTM container -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-XXXX"></script>
+
+</head>
+
+<body>
+
+  <h1>Pixel Demo Page</h1>
+
+  <p>Select language:</p>
+  <button onclick="setLanguage('en')">English</button>
+  <button onclick="setLanguage('fr')">French</button>
+
+  <br><br>
+
+  <button onclick="trackClick()">CTA Click</button>
+
+  <script>
+    function setLanguage(lang) {
+      dataLayer.push({
+        event: "language_change",
+        page_language: lang
+      });
+    }
+
+    function trackClick() {
+      dataLayer.push({
+        event: "cta_click",
+        cta_name: "signup_button",
+        page_language: getCurrentLanguage()
+      });
+    }
+
+    function getCurrentLanguage() {
+      return window.currentLang || "en";
+    }
+  </script>
+
+</body>
+</html>
